@@ -2,7 +2,6 @@ import os
 import json
 import uuid
 from pathlib import Path
-from typing import List, Dict
 from flask import Flask, request, jsonify, send_file
 from werkzeug.utils import secure_filename
 
@@ -43,13 +42,13 @@ file_path.parent.mkdir(parents=True, exist_ok=True)
 file.save(file_path)
 return str(file_path)
 
-def load_json(path: Path) -> Dict:
+def load_json(path: Path) -> dict:
 if not path.exists():
 return {}
 with open(path, 'r', encoding='utf-8') as f:
 return json.load(f)
 
-def save_json(path: Path, data: Dict):
+def save_json(path: Path, data: dict):
 path.parent.mkdir(parents=True, exist_ok=True)
 with open(path, 'w', encoding='utf-8') as f:
 json.dump(data, f, ensure_ascii=False, indent=4)
